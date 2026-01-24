@@ -82,7 +82,7 @@ vsFRAME is written in native JavaScript and does not have further dependencies.
 vsFRAME is tested with latest Firefox, Safari, Opera and Chrome 
 (as of the latest vsframe.js commit time. :))
 
-vsFRAME is intentionally plain JS code without modern JS dev crap. It has no
+vsFRAME is intentionally plain JS code without modern JS dev nonsense. It has no
 minified version, if you need one, you are free to make one. If you do not
 like this, there are countless other JS "frameworks" and "revolutionary" libs.
 
