@@ -1,0 +1,22 @@
+{
+  "name":         "vsframe",
+  "version":      "2.4.0",
+  "description":  "Virtual HTML frames machinery",
+  "main":         "vsframe.js",
+  
+  "repository":   {
+                  "type": "git",
+                  "url": "git+https://github.com/cade-vs/vsframe.git"
+                  },
+  
+  "keywords":     [ 
+                  "frames", 
+                  "virtual-frames",
+                  "html", 
+                  "ajax" 
+                  ],
+                
+  "author":       "Vladi Belperchinov-Shabanski <cade@noxrun.com>",
+  "license":      "GPL-2.0",
+  "homepage":     "https://github.com/cade-vs/vsframe"
+}
