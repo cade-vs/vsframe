@@ -1,24 +1,23 @@
 /*****************************************************************************
 **
-**  vFRAME -- VIRTUAL HTML FRAMES MACHINERY
-**  2018-2024 (c) Vladi Belperchinov-Shabanski "Cade"
-**  <cade@bis.bg> <cade@cpan.org> <shabanski@gmail.com>
+**  vsFRAME -- VIRTUAL HTML FRAMES MACHINERY
+**  (c) 2018-2026 Vladi Belperchinov-Shabanski "Cade" <cade@noxrun.com>
 **
 **  LICENSE: GPLv2
 **
 ******************************************************************************
 **
-**  usage: html text <div class=vframe>virtual html frame</div> more html
+**  usage: html text <div class=vsframe>virtual html frame</div> more html
 **
-**  note:  include <script src="vframe.js"></script> somewhere in the html
+**  note:  include <script src="vsframe.js"></script> somewhere in the html
 **
-**  for more, visit: https://github.com/cade-vs/js-vframe
+**  for more, visit: https://github.com/cade-vs/vsframe
 **
 *****************************************************************************/
 
-vframe_init();
+vsframe_init();
 
-function vframe_init()
+function vsframe_init()
 {
   document.onclick = on_document_click;
 }
@@ -49,23 +48,23 @@ function on_click_img( event, target )
 
 function on_click_anchor( event, target )
 {  
-  var vframe;
+  var vsframe;
 
   if( target.target != '' )
     return;
 
-  var vfr_target_id = target.dataset.vframeTarget;
+  var vfr_target_id = target.dataset.vsframeTarget;
   if( vfr_target_id )
-    vframe = document.getElementById( vfr_target_id );
+    vsframe = document.getElementById( vfr_target_id );
 
-  if( ! vframe )
-    vframe = target.closest( ".vframe" );
+  if( ! vsframe )
+    vsframe = target.closest( ".vsframe" );
     
-  if( ! vframe )
+  if( ! vsframe )
     return;
 
   var href = target.href;
-  http_get( href, function( xhr ) { http_request_handler( xhr, target, vframe ); } );
+  http_get( href, function( xhr ) { http_request_handler( xhr, target, vsframe ); } );
 
   event.stopPropagation(); 
   return false; 
@@ -73,15 +72,15 @@ function on_click_anchor( event, target )
 
 function on_click_submit( event, target )
 {
-  var vframe = target.closest( ".vframe" );
-  if( ! vframe )
+  var vsframe = target.closest( ".vsframe" );
+  if( ! vsframe )
     {
     return;
     }
 
   var form = target.form;
   var data = new FormData( form );
-  http_request( form.method, form.action, data, function( xhr ) { http_request_handler( xhr, target, vframe ); } );
+  http_request( form.method, form.action, data, function( xhr ) { http_request_handler( xhr, target, vsframe ); } );
 
   if( event ) 
     event.stopPropagation(); 
@@ -102,10 +101,10 @@ function http_request( method, url, data, callback )
     xhr.send( data );
 }
 
-function http_request_handler( xhr, target, vframe )
+function http_request_handler( xhr, target, vsframe )
 {
   if( xhr.status == 200 )
-    vframe.innerHTML = xhr.responseText;
+    vsframe.innerHTML = xhr.responseText;
   else
     alert( "Error requesting resource! Please, try again later or contact server administrator..." );
 }

@@ -1,32 +1,32 @@
 
 
 
-#  vFRAME -- VIRTUAL HTML FRAMES MACHINERY
+#  vsFRAME -- VIRTUAL HTML FRAMES MACHINERY
 ## (c) 2018-2026 Vladi Belperchinov-Shabanski "Cade" <cade@noxrun.com>
 
 #  INTRODUCTION
 
-vFRAME is compact JavaScript HTML frames virtualization library.
+vsFRAME is compact JavaScript HTML frames virtualization library.
 
 #  SYNOPSIS
 
     <html>
     <body>
 
-    <h1>VFrame</h1>
+    <h1>vsFrame</h1>
 
     This is a html text for testing frames!
 
-    <div class=vframe>
+    <div class=vsframe>
         This is first <a href=go1.html>test</a>
     </div>
 
     This is out-of-frame link, which points 
-    to <a href=go1.html data-vframe-target=testvframe1>target vframe</a>
+    to <a href=go1.html data-vsframe-target=testvsframe1>target vsframe</a>
 
     And another frame:
     
-    <div class=vframe>
+    <div class=vsframe>
         <form action=form.pl method=post>
         <p><input name=text>
         <p><input type=file name=fff>
@@ -34,13 +34,13 @@ vFRAME is compact JavaScript HTML frames virtualization library.
         </form>
     </div>
 
-    <div class=vframe id=testvframe1>
-      *** target vframe here ***
+    <div class=vsframe id=testvsframe1>
+      *** target vsframe here ***
     </div>
 
 
     Here is footer text
-    <script src="vframe.js"></script> 
+    <script src="vsframe.js"></script> 
     </body>
     </html>
 
@@ -51,47 +51,47 @@ It uses 'DIV' blocks as virtual frames. All links and forms inside virtual
 'DIV' frame will replace only the enclosing 'DIV' frame content instead of
 reloading the whole page. 
 
-To enable 'DIV' to act as virtual frame, "**vframe**" class must be added (as
+To enable 'DIV' to act as virtual frame, "**vsframe**" class must be added (as
 shown in the SYNOPSIS above).
 
-If any link has "**data-vframe-target**" attribute, the result data will be
-replaced not in the current vFrame (or document) but inside a vFrame with
-an ID, pointed by "**data-vframe-target**".
+If any link has "**data-vsframe-target**" attribute, the result data will be
+replaced not in the current vsFrame (or document) but inside a vsFrame with
+an ID, pointed by "**data-vsframe-target**".
 
 Here is an example:
 
     This is out-of-frame link, which points 
-    to <a href=go1.html data-vframe-target=testvframe1>target vframe</a>
+    to <a href=go1.html data-vsframe-target=testvsframe1>target vsframe</a>
 
     text....
     text....
     text....
 
-    <div class=vframe id=testvframe1>
-      *** target vframe here, result of link above will be replaced here ***
+    <div class=vsframe id=testvsframe1>
+      *** target vsframe here, result of link above will be replaced here ***
     </div>
 
 #  NOTES
 
-vFRAME is similar to 'iframe' but very different than 'frame'.
+vsFRAME is similar to 'iframe' but very different than 'frame'.
 
-vFRAME replaces only the enclosing 'DIV' and the result is homogeneous HTML text.
+vsFRAME replaces only the enclosing 'DIV' and the result is homogeneous HTML text.
 
-vFRAME is written in native JavaScript and does not have further dependencies.
+vsFRAME is written in native JavaScript and does not have further dependencies.
 
-vFRAME is tested with latest Firefox, Safari, Opera and Chrome 
-(as of the latest vframe.js commit time. :))
+vsFRAME is tested with latest Firefox, Safari, Opera and Chrome 
+(as of the latest vsframe.js commit time. :))
 
-vFRAME is intentionally plain JS code without modern JS dev crap. It has no
+vsFRAME is intentionally plain JS code without modern JS dev crap. It has no
 minified version, if you need one, you are free to make one. If you do not
 like this, there are countless other JS "frameworks" and "revolutionary" libs.
 
-vFRAME is licensed under GPLv2, for full text see file "COPYING".
+vsFRAME is licensed under GPLv2, for full text see file "COPYING".
 
 #  AUTHOR
 
     Vladi Belperchinov-Shabanski "Cade"
     <cade@noxrun.com>
     https://github.com/cade-vs
-    https://github.com/cade-vs/js-vframe
-    github repo: git@github.com:cade-vs/js-vframe.git
+    https://github.com/cade-vs/vsframe
+    github repo: git@github.com:cade-vs/vsframe.git
