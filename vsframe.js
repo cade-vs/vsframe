@@ -15,8 +15,6 @@
 **
 *****************************************************************************/
 
-vsframe_init();
-
 function vsframe_init()
 {
   document.onclick = on_document_click;
@@ -25,6 +23,8 @@ function vsframe_init()
 function on_document_click( event ) 
 { 
   var target = event.target;
+
+  // alert('on doc click on  ' + target.tagName );
 
   if( target.tagName == 'IMG'   ) // assumed IMG inside A
     return on_click_img( event, target );
@@ -35,6 +35,11 @@ function on_document_click( event )
   if( ( target.tagName == 'INPUT' && target.type == "submit" ) || target.tagName == 'BUTTON' )
     return on_click_submit( event, target );
 
+  // nothing found, perhaps clicked element inside A, try to find one
+  var trget_a = target.closest( "A" );
+  if( trget_a ) 
+    return on_click_anchor( event, trget_a );
+    
 }
 
 function on_click_img( event, target )
@@ -49,16 +54,19 @@ function on_click_img( event, target )
 function on_click_anchor( event, target )
 {  
   var vsframe;
-
+//alert('click on a');
   if( target.target != '' )
     return;
 
   var vfr_target_id = target.dataset.vsframeTarget;
   if( vfr_target_id )
     vsframe = document.getElementById( vfr_target_id );
+//alert('found target vsframe: ' + vsframe );
 
   if( ! vsframe )
     vsframe = target.closest( ".vsframe" );
+
+//alert('found closest vsframe: ' + vsframe );
     
   if( ! vsframe )
     return;
@@ -79,7 +87,7 @@ function on_click_submit( event, target )
     }
 
   var form = target.form;
-  var data = new FormData( form );
+  var data = new FormData( form, target );
   http_request( form.method, form.action, data, function( xhr ) { http_request_handler( xhr, target, vsframe ); } );
 
   if( event ) 
@@ -108,5 +116,9 @@ function http_request_handler( xhr, target, vsframe )
   else
     alert( "Error requesting resource! Please, try again later or contact server administrator..." );
 }
+
+
+vsframe_init();
+
 
 /*** eof ********************************************************************/
