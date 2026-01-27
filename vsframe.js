@@ -86,8 +86,12 @@ function on_click_submit( event, target )
     return;
     }
 
+  var subm = null;
+  
+  if( target.tagName == "BUTTON" || target.tagName == "INPUT" ) subm = target;
+
   var form = target.form;
-  var data = new FormData( form, target );
+  var data = new FormData( form, subm );
   http_request( form.method, form.action, data, function( xhr ) { http_request_handler( xhr, target, vsframe ); } );
 
   if( event ) 

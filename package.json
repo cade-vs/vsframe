@@ -1,6 +1,6 @@
 {
   "name":         "vsframe",
-  "version":      "2.4.0",
+  "version":      "2.4.2",
   "description":  "Virtual HTML frames machinery",
   "main":         "vsframe.js",
   
