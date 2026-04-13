@@ -32,7 +32,7 @@ function on_document_click( event )
   if( target.tagName == 'A' ) 
     return on_click_anchor( event, target );
 
-  if( ( target.tagName == 'INPUT' && target.type == "submit" ) || target.tagName == 'BUTTON' )
+  if( ( target.tagName == 'INPUT' && ( target.type == "submit" || target.type == "image" ) ) || target.tagName == 'BUTTON' )
     return on_click_submit( event, target );
 
   // nothing found, perhaps clicked element inside A, try to find one
@@ -80,6 +80,7 @@ function on_click_anchor( event, target )
 
 function on_click_submit( event, target )
 {
+  //alert('on_click_submit:  ' + target.tagName );
   var vsframe = target.closest( ".vsframe" );
   if( ! vsframe )
     {
@@ -90,13 +91,21 @@ function on_click_submit( event, target )
   
   if( target.tagName == "BUTTON" || target.tagName == "INPUT" ) subm = target;
 
-  var form = target.form;
-  var data = new FormData( form, subm );
-  http_request( form.method, form.action, data, function( xhr ) { http_request_handler( xhr, target, vsframe ); } );
+  http_form_submit( target.form, subm, vsframe );
 
   if( event ) 
     event.stopPropagation(); 
   return false; 
+}
+
+function http_form_submit( form, submit_element, vsframe )
+{
+  if( ! vsframe )
+    var vsframe = form.closest( ".vsframe" );
+  if( ! vsframe )
+    form.submit();
+  var data = new FormData( form, submit_element );
+  http_request( form.method, form.action, data, function( xhr ) { http_request_handler( xhr, submit_element, vsframe ); } );
 }
 
 function http_get( url, callback )
